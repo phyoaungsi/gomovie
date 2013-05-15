@@ -12,7 +12,7 @@ response.setHeader("Access-Control-Allow-Origin","*");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Access-Control-Allow-Origin" content="*" />
 <link rel="stylesheet" type="text/css" href="<s:url value="/css/style.css"/>" />
-<link rel="stylesheet" href="<s:url value="/css/custom-theme/jquery-ui-1.10.2.custom.css"/>" />
+<link rel="stylesheet" href="<s:url value="/css/eggplant/jquery-ui-1.10.3.custom.min.css"/>" />
 
 
 
@@ -36,11 +36,7 @@ response.setHeader("Access-Control-Allow-Origin","*");
 			icons: {
 				primary: "ui-icon-search"
 			}	
-		});
-		
-		
-		
-		
+		});		
 		
 // grab the initial top offset of the navigation 
 	var sticky_navigation_offset_top = $('#leftmenu').offset().top+40;
@@ -209,6 +205,7 @@ background-size:100% 100%
 
 <s:include value="left_menu.jsp"/>
 </div>
+<!--
 <div style="width:100%;text-align:center;padding:5px" class="slider_container">
   <div class="container" style="width:700px;height:300px;background:white;padding:5px">
     <div id="slides">
@@ -237,8 +234,27 @@ background-size:100% 100%
     <div id="slidesjs-log" >Slide <span class="slidesjs-slide-number">1</span> of 4</div>
   </div>
 </div>
+-->
   <script>
     $(function() {
+    
+    
+     $("#clipwraplistright").hover(
+			function () {
+			//alert('over');
+			var i=$("#map-video").height();
+			//alert(i);
+			if(i > 300){
+			$("#clipwraplistright").css('overflow-y','scroll');
+			}
+			},
+			function () {
+			//alert('flow');
+			$("#clipwraplistright").css('overflow','hidden');
+			}
+		);
+		
+		
       $('#slides').slidesjs({
         width: 940,
         height: 348,
@@ -264,9 +280,10 @@ background-size:100% 100%
         }
       });
     });
+   
   </script>
 
-  
+  <div id="ambientimage" style="opacity:0;position:absolute;width:90%;height:80%;z-index:-1;background-size:100%;background-image:url('http://1.bp.blogspot.com/--SwCdDzDR_U/T9_qeI0zbTI/AAAAAAAAIgk/e6IIJWUfido/s1600/bagan+temples+myanmar+01.jpg');background-repeat:no-repeat;background-position:center"></div>
   
 
 
@@ -278,10 +295,10 @@ background-size:100% 100%
 
 <div id="conent">
 <div class="right_col">
-<div id=map-video class='clip-container-right thumbnail-panel'><ul id="map-video-list"></ul></div>
+<div id="clipwraplistright" style="width:350px;height:500px;overflow:hidden"><div id=map-video class='clip-container-right thumbnail-panel'><ul id="map-video-list"></ul></div></div>
 <!--
 <div style="margin-top:0px;background:red;position:relative" class="db2">
-<div class="bd2_top" tyle="margin-top:0px;background:green" >
+<div class="bd2_top" style="margin-top:0px;background:green" >
 <div class="bd2_top_content">&nbsp;</div>
 </div>
 
@@ -300,6 +317,7 @@ list </div>
 </div> -->
 
 </div>
+
 <div class="left_col">
 <div class="db1" style="width:700px">
 <div class="db1_title" >
@@ -325,6 +343,9 @@ list </div>
 </div>
 </div>
 </div>
+
+
+
 <div align=center>Myannmar Movie Drama <a href='http://www.mmdrama.com/'>2013</a></div></body>
 
 </html>

@@ -38,9 +38,10 @@ public class Dao {
 	{
 		
 		entityManager.getTransaction().begin();
-		entityManager.persist(o);
+		entityManager.merge(o);
+		entityManager.flush();
 		entityManager.getTransaction().commit();
-		entityManager.close();
+		//entityManager.close();
 		return true;
 	}
 	

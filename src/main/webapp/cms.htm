@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUU7fxPxVpieI7lSHpw3uwp4ukmI8otqI&sensor=false">
+    </script>
+    <script type="text/javascript">
+   
+$(document).ready(function(){
+
+$('.db1').css('width','1000px');
+$('.right_col').remove();
+});
+setInterval(setIframeHeight,1000);
+
+    function setIframeHeight() {
+
+var int=window.location.href;
+var array=int.split("#");
+var length=array[1];
+
+//var iframe=$('#framecms');
+  // if (iframe) {
+     //  var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+  //var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    //    if (iframeWin.document.body) {
+    //        iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+   //    }
+
+document.getElementById("framecms").height=length+"px";
+    
+
+}; 
+
+ 
+    </script>
+  </head>
+  <body>
+
+<div id="fwrap" style="vertical-align:text-top">
+<iframe id=framecms style="vertical-align:text-top"  src="http://www.quest.whereismyanmar.net/joomla16/" scrolling='no' frameborder=0 seamless width="100%" height="3px"/></div>
+<script>
+
+</script>
+  </body>
+</html>

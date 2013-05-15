@@ -7,7 +7,13 @@
 
     <package name="drama-default" namespace="/" extends="struts-default">
 
-  
+  <interceptors>
+    <interceptor name="scopedModelDriven" class="com.opensymphony.interceptor.ScopedModelDrivenInterceptor" />
+    
+    <interceptor-stack name="defaultStack">
+        <interceptor-ref name="scopedModelDriven" />
+    </interceptor-stack>
+</interceptors>
     
 
         <global-results>

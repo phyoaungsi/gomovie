@@ -12,7 +12,7 @@ $(function() {
 </script>
 
 <ul id="menu">
-<li class="ui-state-disabled"><a href="#">Aberdeen</a></li>
+<li><a href="/gomovie/welcome/cms.htm">Blog</a></li>
 <li><a href="#"><img src="<s:url value="/images/plane_ico.png"/>"/>&nbsp; Airlines</a></li>
 <li> <s:a href="%{news}"><img src="<s:url value="/images/globe_ico.png"/>"/>&nbsp;News</s:a></li>
 <li><a href="#"><img src="<s:url value="/images/beach_logo1.png"/>"/>&nbsp;Beaches</a></li>

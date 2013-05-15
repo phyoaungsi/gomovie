@@ -51,6 +51,14 @@ var ctaLayer = new google.maps.KmlLayer({
 var southWest = bounds.getSouthWest();
 var northEast = bounds.getNorthEast();
    // infowindow.setContent('Zoom: ' + zoomLevel+'north'+northEast.lat());
+ $("#ambientimage").animate({
+width: "90%",
+opacity: 0.0,
+fontSize: "3em",
+borderWidth: "10px",
+height:"90%"
+}, 1500 );
+
   });
 
 
@@ -65,14 +73,26 @@ var southWest = bounds.getSouthWest();
 var northEast = bounds.getNorthEast();
 
     infowindow.setContent('north'+northEast.lat());
+    
+   
     <s:url id="ajax.movies.first" namespace="/ajax" action="GetLatLngDistributedListAction" />
-req_init("<s:property value="ajax.movies.first"/>",{ lat1: northEast.lat() , lat0: southWest.lat(),lng0: southWest.lng(), lng1: northEast.lng()});
+
+var pull_url="http://quest.whereismyanmar.net/dsclip.php";
+var zoomlvl=map.getZoom();
+
+if(zoomlvl > 12)
+{
+   pull_url="http://quest.whereismyanmar.net/clip.php";
+
+}
+req_init(pull_url,{ lat1: northEast.lat() , lat0: southWest.lat(),lng0: southWest.lng(), lng1: northEast.lng()});
 
 <s:url id="ajax.movies" namespace="/ajax" action="GetLatLngListAction" />
 
 $.ajax({
 type: "POST",
-url: "<s:property value="ajax.movies.first"/>",
+dataType: "json", 
+url: pull_url,
 data: { lat1: northEast.lat() , lat0: southWest.lat(),lng0: southWest.lng(), lng1: northEast.lng()}
 }).done(function(datar) {processData(datar);});
  
@@ -129,20 +149,40 @@ function addMarker(latlng) {
  // iterator++;
 }
 
+function clearpins() {
+  for (var i = 0; i < markers.length; i++ ) {
+    markers[i].setMap(null);
+  }
+  markers= [];
+  iterator=0;
+}
 
 function processData(datar){
-
+ clearpins();
 			$('#map-video-list').html('');
 			//var data=JSON.parse(datar);
 			var data=datar;
 			if(data.movies.length>0)
 			{
+
+$("#ambientimage").animate({
+width: "100%",
+opacity: 0.9,
+fontSize: "3em",
+borderWidth: "10px",
+height:"100%"
+}, 1500 );
+$(".left_col").animate({
+opacity: 0.8
+}, 1500 );
+//$("#db1_content").css('opacity','0.9');
+
 			for(var i=0;i<data.movies.length;i++)
 			{
 			
 			   var movie=data.movies[i];
 			   var icon='<li class="clip-result-right  ui-state-default" > '+    
-			'<div id="thumbnail" style="float:left" > <img onmouseover="toggleBounce(markers['+iterator+']);" onmouseout="deBounce();" width="140px" height="84px" src="/gomovie/download.do?fileName='+movie.thumbnail+'"></div>'+ 
+			'<div id="thumbnail" style="float:left" > <img onmouseover="toggleBounce(markers['+iterator+']);" onmouseout="deBounce();" width="140px" height="84px" src="http://www-01.ibm.whereismyanmar.net/images/'+movie.thumbnail+'"></div>'+ 
 			     ' <div style="width:150px;text-transform: capitalize;text-align:left;float:right" class="">  '+            
 			     ' <a href="/gomovie/display/showmovie.do?id='+movie.uuid+'">&nbsp;'+movie.title+'</a>'+ 
 			      '</div>   '+   
@@ -154,7 +194,7 @@ function processData(datar){
 			$('#map-video-list').append(icon);
 			var pinLocation= new google.maps.LatLng(movie.map.lattitude, movie.map.longitude);
 			drop(pinLocation);
-			iterator++;
+			 iterator++;
 			}}
 			$('#map-video-list > li').hover(
 			     function () {
@@ -165,6 +205,8 @@ function processData(datar){
 			         $(this).removeClass('ui-state-hover');
 			    }
 			);
+
+ 
 			//var i=document.getElementById('super_container');
 			//alert(i);
 			//if(i==null){
@@ -281,8 +323,9 @@ function processData(datar){
 Search Result <s:property value="keyword" />
 </s:if>
 <table width="100%"><tr><td>
-<div id=map-canvas style="height:400px;width:100%">Loading Map...</div>
-
+<div id="map_wrap">
+  <div id=map-canvas style="height:400px;width:100%">Loading Map...</div>
+</div>
 <div class="clip-container imgbg">
 <ul>
 <s:iterator value="movies1" status="rowstatus">

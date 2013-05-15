@@ -21,10 +21,10 @@
       function initialize() {
     	  geocoder = new google.maps.Geocoder();
 
-    	var myLatlng=new google.maps.LatLng(16.7799, 96.1565);
+    	var myLatlng=new google.maps.LatLng($('#update_latitude').val(), $('#update_longitude').val());
         var mapOptions = {
           center: myLatlng,
-          zoom: 12,
+          zoom: 10,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
          map = new google.maps.Map(document.getElementById("map-canvas"),
@@ -41,9 +41,9 @@
         google.maps.event.addListener(map, 'click', function(event) {
         	//alert(event.latLng);
         	
-        	$('#create_latitude').val(event.latLng.lat());
-        	$('#create_longitude').val(event.latLng.lng());
-        	$('#create_zoomlevel').val(map.getZoom());
+        	$('#update_latitude').val(event.latLng.lat());
+        	$('#update_longitude').val(event.latLng.lng());
+        	$('#update_zoomlevel').val(map.getZoom());
             placeMarker(event.latLng);
           });
 
@@ -104,11 +104,14 @@ Search Result <s:actionmessage value="keyword" />
   </tr>
 </s:iterator>
 
-<s:form action="create" method="POST" enctype="multipart/form-data">
+<s:form action="update" method="POST" enctype="multipart/form-data">
 
  <s:textfield label="Video Name" name="name"/>
-   <s:textfield label="Embed" name="embed"/>
+   <s:textfield label="uuid" name="uuid"/>
    <s:textfield label="Description" name="desc"/>
+    <s:textfield label="Rank" name="rank"/>
+    <s:textfield label="Featured" name="featured"/>
+     <s:textfield label="Background Image" name="backgroundImage"/>
    <s:textfield label="Location" name="latitude"/>
    <s:textfield label="Location" name="longitude"/>
    <s:textfield label="Location" name="zoomlevel"/>

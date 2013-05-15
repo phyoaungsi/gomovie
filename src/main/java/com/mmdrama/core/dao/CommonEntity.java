@@ -45,11 +45,15 @@ public class CommonEntity {
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
+	
 	@PrePersist
 	private void setUp()
 	{
 		this.createdTime=new Date();
+		if(this.uuid==null)
+		{
 		this.uuid= UUID.randomUUID().toString();
+		}
 	}
 	public String getTags() {
 		return tags;

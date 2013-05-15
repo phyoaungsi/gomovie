@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <copy todir="C:\JAVA\New folder\gomovie\target/struts2-mailreader/WEB-INF/src/java" failonerror="false">
+    <fileset dir="C:\JAVA\New folder\gomovie/src/main/java"/>
+  </copy>
+  <copy todir="C:\JAVA\New folder\gomovie\target/struts2-mailreader/WEB-INF/src/java" failonerror="false">
+    <fileset dir="C:\JAVA\New folder\gomovie/src/main/resources"/>
+  </copy>
+</target>
+</project>

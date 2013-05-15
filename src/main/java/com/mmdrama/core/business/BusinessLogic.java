@@ -22,6 +22,7 @@ public abstract class BusinessLogic {
 	
 	public void process()
 	{
+		doValidation();
 		execute();
 		disconnect();
 		
@@ -30,13 +31,16 @@ public abstract class BusinessLogic {
 	
 	private void disconnect()
 	{
+	 if(em.isOpen())
+	 {
 		em.close();
+	 }
 		
 	}
 	
 	
 	protected abstract void execute();
-	
+	protected abstract void doValidation();
 
 
 }

@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import com.mmdrama.business.movie.MovieBL;
+
 import com.mmdrama.dao.MovieDao;
 import com.mmdrama.dao.entity.DownloadFeed;
 

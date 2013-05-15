@@ -2,12 +2,16 @@ package com.mmdrama.web.actions.maintain;
 
 import java.util.Map;
 
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+
 import com.mmdrama.service.MovieService;
 import com.mmdrama.web.actions.CommonAction;
 import com.mmdrama.web.model.maintain.movie.MaintainMovie;
-import com.mmdrama.web.service.Service;
+
 import com.opensymphony.xwork2.interceptor.ScopedModelDriven;
 
+@Action
 public class UpdateFormAction extends CommonAction implements ScopedModelDriven<MaintainMovie> {
 
 	/**
@@ -22,7 +26,7 @@ public class UpdateFormAction extends CommonAction implements ScopedModelDriven<
 		MovieService svc=new MovieService();
 		svc.getMovieById(this.getUuid());
 		
-		return SUCCESS;
+		return INPUT;
 	}
 
 	public String getUuid() {
@@ -35,14 +39,14 @@ public class UpdateFormAction extends CommonAction implements ScopedModelDriven<
 
 	public MaintainMovie getModel() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.model;
 	}
 
 
 
 	public void setModel(MaintainMovie model) {
 		// TODO Auto-generated method stub
-		
+		this.model=model;
 	}
 
 	public void setScopeKey(String key) {
